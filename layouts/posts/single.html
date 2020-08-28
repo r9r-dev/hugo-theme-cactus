@@ -43,15 +43,15 @@
         <div class="article-tag">
             <i class="fas fa-tag"></i>
             {{ range $index, $value := .Params.tags }}
-            {{ if gt $index 1 }} {{ print ", " }} {{ end }}
+            {{ if gt $index 1 }} {{ print " " }} {{ end }}
             <a class="tag-link" href="{{ "/tags/" | relLangURL }}{{ $value | urlize }}" rel="tag">{{ $value }}</a>
             {{ end }}
-        </div> 
+        </div>
         {{ end }}
       </div>
     </header>
 
-  {{ with .Resources.ByType "image" }}
+  <!-- {{ with .Resources.ByType "image" }}
     <div class="article-gallery">
       {{ range $index, $value := . }}
       <a class="gallery-item" href="{{ .RelPermalink }}" rel="gallery_{{ $index }}">
@@ -59,10 +59,20 @@
       </a>
       {{ end }}
     </div>
+  {{ end }} -->
+  {{ if .IsTranslated }}
+    <div class="article-translate">
+      <i>{{ i18n "Read_me_in" }}
+      {{ range .Translations }}
+        <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+      {{ end}}</i>
+    </div>
+    <hr>
   {{ end }}
     <div class="content" itemprop="articleBody">
       {{ .Content}}
     </div>
+    <hr>
   </article>
 
   {{ partial "comments.html" . }}

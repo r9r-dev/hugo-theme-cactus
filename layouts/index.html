@@ -4,7 +4,7 @@
     {{ .Site.Params.description }}
   {{ end }}
   {{ if isset .Site.Params "social" }}
-      <p>Find me on
+      <p>{{ i18n "Find_me_on" }}
       {{ $length := (len .Site.Params.social) }}
       {{ range $index, $elem := .Site.Params.social}}
       {{ if eq $elem.name "email" }}
@@ -23,18 +23,26 @@
         {{ if (lt (add $index 2) $length) }}
           {{- print " , " -}}
         {{ else if (lt (add $index 1) $length) }}
-          {{- print " and " -}}
+          {{ i18n "and" }}
         {{ else }}
           {{- print "." -}}
         {{ end }}
       {{ end }}
       </p>
   {{ end }}
+  {{ if .IsTranslated }}
+  <div class="article-translate">
+  {{ range .Translations }}{{ i18n "Available_languages" }}
+    <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+    <p></p>
+  {{ end }}
+  </div>
+{{ end }}
   </section>
 
   <section id="writing">
     <!-- TODO: use built in mainSections parameter https://gohugo.io/functions/where/#mainsections -->
-    <span class="h1"><a href="{{ .Site.Params.mainSection | absURL }}">Writings</a></span>
+    <span class="h1"><a href="{{ .Site.Params.mainSection | absURL }}">{{ i18n "Writings" }}</a></span>
     {{ if (and (and (isset .Site.Params "tagsoverview") (eq .Site.Params.tagsOverview true)) (gt (len .Site.Taxonomies.tags) 0)) }}
     <span class="h2">Topics</span>
     <span class="widget tagcloud">

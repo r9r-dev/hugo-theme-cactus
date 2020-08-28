@@ -762,7 +762,7 @@ body {
   color: #2bbc8a;
 }
 #header-post #menu {
-  visibility: hidden;
+  visibility: visible;
   margin-right: 2rem;
 }
 #header-post #nav {
@@ -1187,6 +1187,11 @@ article .content .caption {
   font-size: 1.5em;
   line-height: 1.25;
 }
+
+.article-translate {
+  font-size: 0.8rem;
+}
+
 .article-tag .tag-link {
   background-image: linear-gradient(transparent, transparent 10px, #d480aa 10px, #d480aa);
   background-position: bottom;
